@@ -5,6 +5,7 @@ import * as Flex from "@twilio/flex-ui";
 import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
+import { myReduxStore } from "./CustomReduxStore";
 
 const mountNode = document.getElementById("root");
 
@@ -15,10 +16,17 @@ window.onload = () => {
     ...predefinedConfig,
   };
 
+  Flex.Actions.replaceAction("HistoryReplace", (location: string, original) => {
+    if (location.startsWith("/teams")) {
+      location = location.replace("teams", "agents");
+    }
+    original(location);
+  });
+
   Flex
     .progress(mountNode)
     .provideLoginInfo(configuration, mountNode)
-    .then(() => Flex.Manager.create(configuration))
+    .then(() => Flex.Manager.create(configuration, myReduxStore))
     .then(manager => renderApp(manager))
     .catch(error => handleError(error));
 };
