@@ -1,5 +1,7 @@
 import React from "react";
 import * as Flex from "@twilio/flex-ui";
+import { BrowserRouter } from "react-router-dom";
+import { Route, Switch } from 'react-router'
 
 class App extends React.Component {
   render() {
@@ -11,7 +13,22 @@ class App extends React.Component {
 
     return (
       <Flex.ContextProvider manager={manager}>
-        <Flex.RootContainer />
+        <BrowserRouter>
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={routeProps => (
+                <Flex.AgentDesktopView route={routeProps} />
+              )}
+            />
+            <Route
+              path="/agents"
+              exact
+              render={routeProps => <Flex.TeamsView route={routeProps} />}
+            />
+          </Switch>
+        </BrowserRouter>
       </Flex.ContextProvider>
     );
   }
