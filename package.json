@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@twilio/flex-ui": "^1.11.2",
+    "@twilio/flex-ui": "^1.13.0",
     "history": "^4.9.0",
     "react": "~16.5.2",
     "react-dom": "~16.5.2",

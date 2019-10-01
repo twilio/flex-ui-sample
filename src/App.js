@@ -26,7 +26,9 @@ class App extends React.Component {
                     />
                     <Route
                     path="/agents"
-                    render={routeProps => <Flex.TeamsView route={routeProps} />}
+                    render={routeProps => (
+                        <Flex.TeamsView route={routeProps} isViewActive={routeProps.location.pathname === "/agents"} />
+                    )}
                     />
                 </Switch>
               </Router>
