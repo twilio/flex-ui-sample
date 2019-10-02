@@ -13,27 +13,24 @@ class App extends React.Component {
     }
 
     return (
-      <Provider store={myReduxStore}>
-          <Flex.ContextProvider manager={manager}>
-              <Router history={myHistory}>
-                <Switch>
-                    <Route
-                    path="/"
-                    exact
-                    render={routeProps => (
-                        <Flex.AgentDesktopView route={routeProps} />
-                    )}
-                    />
-                    <Route
-                    path="/agents"
-                    render={routeProps => (
-                        <Flex.TeamsView route={routeProps} isViewActive={routeProps.location.pathname === "/agents"} />
-                    )}
-                    />
-                </Switch>
-              </Router>
-          </Flex.ContextProvider>
-      </Provider>
+        <Provider store={myReduxStore}>
+            <Flex.ContextProvider manager={manager}>
+                <Router history={myHistory}>
+                    <Switch>
+                        <Route path="/" exact render={routeProps => <Flex.AgentDesktopView route={routeProps} />} />
+                        <Route
+                            path="/agents"
+                            render={routeProps => (
+                                <Flex.TeamsView
+                                    route={routeProps}
+                                    isViewActive={routeProps.location.pathname.startsWith("/agents")}
+                                />
+                            )}
+                        />
+                    </Switch>
+                </Router>
+            </Flex.ContextProvider>
+        </Provider>
     );
   }
 }
