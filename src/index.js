@@ -31,6 +31,7 @@ function renderApp(manager) {
 }
 
 function handleError(error) {
+  Flex.errorPage(error, mountNode);
   console.error("Failed to initialize Flex", error);
 }
 
